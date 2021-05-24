@@ -4,4 +4,6 @@ from django.shortcuts import render
 
 def login(request):
 	return render(request, 'login.html')
-    
+
+def catering_service_manager(request):
+    return render(request, 'catering_service_manager.html')
