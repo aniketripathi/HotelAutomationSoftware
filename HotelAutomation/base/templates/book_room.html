@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+	
+		<!-- Bootstrap CSS -->
+		<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<title>Book Room</title>
+	</head>
+	
+	<body>
+		<div class="mx-1 container">		
+			<form>
+				<div class="row m-3 w-50">
+						<label for="room_number" class="col-sm-3 form-label">Room Number</label>
+						<select class="w-25 col-sm-3 form-select">
+							<!--Add dynamic options here-->
+						</select>
+						<p class="fs-7 fw-bold col text-success">&#8377;1000</p>
+				</div>
+				
+				<div class="row m-3 w-50">
+						<label for="guest_name" class="col-sm-3 form-label">Guest Name</label>
+						<input class="col w-25 form-control" type="text" id="guest_name" placeholder="Enter guest name here">
+						
+				</div>
+				
+				<div class="row m-3 w-50">
+						<label for="guest_id" class="col-sm-3 form-label">Guest Id</label>
+						<input class="col-md-5 w-25 form-control" type="text" id="guest_id" placeholder="Enter guest id here">
+				</div>
+				
+				<div class="row m-3 w-50">
+						<label for="book_date_when" class="col-sm-3 form-label">Booking Date</label>
+						<input class="col-sm-3 w-25 form-control" type="date" id="book_date_when">
+				</div>
+				
+				<div class="row m-3 w-50">
+						<label for="book_time_when" class="col-sm-3 form-label">Booking Time</label>
+						<input class="col-sm-3 w-25 form-control" type="time" id="book_time_when" value="12:00">
+				</div>
+				
+				<div class="row m-3 w-50">
+						<label for="advance" class="col-sm-3 form-check-label">Advance Booking</label>
+						<input class="col-sm-1 form-check-input" type="checkbox" id="advance">
+				</div>
+				
+				<div class="row m-3 w-50	">
+						<label for="discount" class="col-sm-3 form-label">Discount</label>
+						<input class="col-sm-3 w-25 form-control" type="number" id="discount" max="100" min="0" step="0.1">
+						<label class="col form-label text-danger mx-3">Maximum Discount available=100% </label>
+				</div>
+				
+				<div class="row m-3 w-50">
+					<button class="col-sm-3 w-25 btn btn-primary m-3">Book Room</button>
+					<button class="col-sm-3 w-25 btn btn-primary m-3">Reset</button>
+				</div>
+				
+				
+				
+				
+			
+			</form>
+		</div>
+	
+	</body>
+
+	
+</html>

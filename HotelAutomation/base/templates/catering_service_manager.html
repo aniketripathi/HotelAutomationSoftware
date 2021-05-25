@@ -8,10 +8,19 @@
 	
 		<!-- Bootstrap CSS -->
 		<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-		<title>Login</title>
+		<title>Catering Service Manager</title>
 	</head>
 	
 	<body>
+		<ul class="nav justify-content-end">
+			<li class="nav-item">
+				<p class="nav-link text-success"> Username </p>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="#">logout</a>
+			</li>
+		</ul>
+		
 		<div>
 			<!-- This area is for displaying message-->
 		</div>
@@ -20,8 +29,9 @@
 			<form class="form-inline">
 				<div class="form-group">
 					<label for="token" class="form-label mx-3">Token</label>
-					<input type="number" id="token">
-					<button type="button" class="btn btn-sm btn-primary">Get Info</button>
+					<input type="number" id="token" min="0" step="1">
+					<button type="button" class="btn btn-sm btn-primary mx-3">Get Info</button>
+					<!--c Add a label here to display message -->
 				</div>
 			</form>
 		</div>
@@ -34,31 +44,31 @@
 				<label class="fs-7 fw-bold col" for="guest_price">Total price</label><label id="guest_price" class="fs-7"></label>
 			</div>
 		
-		<div class="mx-1 w-50">
+			<div class="mx-1 w-50">
 		<!--This area is used for adding catering information -->
 		
-			<form>
-				<div class="row my-3">
-					<label class="fs-5 col">Food Item</label>
-					<label class="fs-5 col">Price</label>
-				</div>
-			
-				<div class="row my-3">
-					<div class="col"><input id="item1" type="text" class="form-control" placeholder="Enter Food item name"></div>
-					<div class="col"><input id="price1" type="number" class="form-control" placeholder="Enter Price"></div>
-				</div>
+				<form>
+					<div class="row my-3">
+						<label class="fs-5 col-sm-5">Food Item</label>
+						<label class="fs-5 col-sm-3">Price</label>
+					</div>
 				
-				<!-- Add more items dynamically-->
+					<div class="row my-3">
+						<div class="col-sm-5"><input id="item1" type="text" class="form-control" placeholder="Enter Food item name"></div>
+						<div class="col-sm-3"><input id="price1" type="number" class="form-control" placeholder="Enter Price"></div>
+					</div>
+				
+					<!-- Add more items dynamically-->
 			
 				
-				<div class="row my-3 w-50">
-					<button class="col btn btn-primary btn-sm mx-3">Add Item</button>
-					<button class="col btn btn-secondary btn-sm mx-3">Submit</button>
-				</div>
+					<div class="row my-3 w-50">
+						<button class="col-sm-3 btn btn-primary btn-sm mx-3">Add Item</button>
+						<button class="col-sm-3 btn btn-secondary btn-sm mx-3">Submit</button>
+					</div>
 			
-			</form>
+				</form>
+			</div>
 		</div>
-		
 		
 	</body>
 	
