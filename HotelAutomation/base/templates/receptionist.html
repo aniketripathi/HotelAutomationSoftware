@@ -14,39 +14,51 @@
 	<body>
 		<ul class="nav justify-content-end">
 			<li class="nav-item">
-				<p class="nav-link text-success"> Username </p>
+				<p class="nav-link text-success"> {{request.session.username}} </p>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#">logout</a>
+				<a class="nav-link active" aria-current="page" href="/base/login">logout</a>
 			</li>
 		</ul>
 	
 	
-		<div class="w-75 m-3">
-			<table class="table table-striped table-bordered table-responsive">
+		<div class="mx-5 my-3 fixed-table-body">
+			<table class="w-100 table table-striped table-borderedx` table-responsive">
 				<caption>Occupancy State<caption>
 				<thead class="table-dark">
 					<tr>
 						<th scope="col">Room Number</th>
 						<th scope="col">Bed</th>
 						<th scope="col">AC</th>
-						<th scope="col">Occupied</th>
-						<th scope="col">booked</th>
 						<th scope="col">Price</th>
-						<th scope="col">Checkout When</th>
+						<th scope="col">Occupied</th>
+						<th scope="col">Token</th>
+						<th scope="col">Occupied When</th>
+						<th scope="col">Occupied Checkout</th>
+						<th scope="col">Advance Price</th>
+						<th scope="col">Advance</th>
+						<th scope="col">Book When</th>
+						<th scope="col">Book Checkout</th>
+						
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Double</td>
-						<td>AC</td>
-						<td>False</td>
-						<td>False</td>
-						<td>1000</td>
-						<td>12/5/2021</td>
-						
-					</tr>
+					{% for room in rooms %}
+						<tr>
+							<td>{{room.room_number}}</td>
+							<td>{{room.bed}}</td>
+							<td>{{room.ac}}</td>
+							<td>{{room.price}}</td>
+							<td>{{room.occupied}}</td>
+							<td>{{room.token}}</td>
+							<td>{{room.occupied_when}}</td>
+							<td>{{room.occupied_checkout}}</td>
+							<td>{{room.advance_price}}</td>
+							<td>{{room.advance}}</td>
+							<td>{{room.book_when}}</td>
+							<td>{{room.book_checkout}}</td>
+						</tr>
+					{% endfor %}
 					<!-- Add Rows dynamically -->
 				</tbody>
 			</table>

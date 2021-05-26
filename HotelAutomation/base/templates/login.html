@@ -16,27 +16,28 @@
 	<p class="h5 text-center mt-3 mb-5"> Welcome! Please login to continue. </p>
 	
 	<div class="container-sm w-25 border border-primary mb-3 pt-3">
-		<form>
+		<form method="post">
+			{% csrf_token %}
 			<div class="mb-3">
 				<label for="login_type" class="form-label">Type</label>
-				<select class="form-select mb-3" aria-label="Default select example">
-					<option value="0">Administrator</option>
+				<select class="form-select mb-3" aria-label="Default select example" name="usertype">
+					<option value="0" selected="selected">Administrator</option>
 					<option value="1">Receptionist</option>
 					<option value="2">Catering Service Manager</option>
 				</select>
 			</div>
 			<div class="mb-3">
 				<label for="login_username" class="form-label">Username</label>
-				<input type="text" class="form-control" id="login_username" aria-describedby="Enter Username">
+				<input type="text" class="form-control" id="login_username" aria-describedby="Enter Username" name="username">
 			</div>
 			<div class="mb-3">
 				<label for="login_password" class="form-label">Password</label>
-				<input type="password" class="form-control" id="login_password">
+				<input type="password" class="form-control" id="login_password" name="password">
 			</div>
 			<button type="submit" class="btn btn-primary mb-3">Submit</button>
 		</form>
 	</div>
-	
+	<p class="h5 text-center mb-3 text-danger">{{error_message}} </p>
 	<p class="h5 text-center mb-3 text-danger">If you don't remember your username or password then contact Administrator. </p>
 	
   
