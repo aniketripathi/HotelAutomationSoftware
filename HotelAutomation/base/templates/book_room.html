@@ -13,53 +13,80 @@
 	
 	<body>
 		<div class="mx-1 container">		
-			<form>
+			<form method="post">
+				{% csrf_token %}
 				<div class="row m-3 w-50">
 						<label for="room_number" class="col-sm-3 form-label">Room Number</label>
-						<select class="w-25 col-sm-3 form-select">
+						<select class="w-25 col-sm-3 form-select " name="room_number">
 							<!--Add dynamic options here-->
+							{% for room in rooms %}
+							<option value= {{room.room_number}}>{{room.room_number}}</option>
+							{% endfor %}
 						</select>
 						<p class="fs-7 fw-bold col text-success">&#8377;1000</p>
 				</div>
 				
 				<div class="row m-3 w-50">
 						<label for="guest_name" class="col-sm-3 form-label">Guest Name</label>
-						<input class="col w-25 form-control" type="text" id="guest_name" placeholder="Enter guest name here">
+						<input class="col w-25 form-control" type="text" id="guest_name" placeholder="Enter guest name here" name="guest_name">
 						
 				</div>
 				
 				<div class="row m-3 w-50">
 						<label for="guest_id" class="col-sm-3 form-label">Guest Id</label>
-						<input class="col-md-5 w-25 form-control" type="text" id="guest_id" placeholder="Enter guest id here">
+						<input class="col-md-5 w-25 form-control" type="text" id="guest_id" placeholder="Enter guest id here" name="guest_id">
 				</div>
 				
 				<div class="row m-3 w-50">
 						<label for="book_date_when" class="col-sm-3 form-label">Booking Date</label>
-						<input class="col-sm-3 w-25 form-control" type="date" id="book_date_when">
+						<input class="col-sm-3 w-25 form-control" type="date" id="book_date_when" name="date">
 				</div>
 				
 				<div class="row m-3 w-50">
 						<label for="book_time_when" class="col-sm-3 form-label">Booking Time</label>
-						<input class="col-sm-3 w-25 form-control" type="time" id="book_time_when" value="12:00">
+						<input class="col-sm-3 w-25 form-control" type="time" id="book_time_when" value="12:00" name="time">
 				</div>
 				
 				<div class="row m-3 w-50">
+						<label for="days" class="col-sm-3 form-label">Days</label>
+						<input class="col-sm-3 w-25 form-control" type="number" id="days" value="1" min="0" step="1" name="days">
+				</div>
+				
+				
+				<div class="row m-3 w-50">
 						<label for="advance" class="col-sm-3 form-check-label">Advance Booking</label>
-						<input class="col-sm-1 form-check-input" type="checkbox" id="advance">
+						<input class="col-sm-1 form-check-input" type="checkbox" id="advance" name="advance">
+				</div>
+				
+				<div class="row m-3 w-50">
+						<label for="use_discount" class="col-sm-3 form-check-label">Advail Discount</label>
+						<input class="col-sm-1 form-check-input" type="checkbox" id="use_discount" name="use_discount">
 				</div>
 				
 				<div class="row m-3 w-50	">
 						<label for="discount" class="col-sm-3 form-label">Discount</label>
-						<input class="col-sm-3 w-25 form-control" type="number" id="discount" max="100" min="0" step="0.1">
+						<input class="col-sm-3 w-25 form-control" type="number" id="discount" max="100" min="0" step="0.1" name="discount">
 						<label class="col form-label text-danger mx-3">Maximum Discount available=100% </label>
 				</div>
 				
 				<div class="row m-3 w-50">
-					<button class="col-sm-3 w-25 btn btn-primary m-3">Book Room</button>
-					<button class="col-sm-3 w-25 btn btn-primary m-3">Reset</button>
+						<label for="phone_number" class="col-sm-3 form-label">Phone Number</label>
+						<input class="col w-25 form-control" type="text" id="phone_number" placeholder="Enter phone number here" name="phone_number" maxlength="10" >
+						
 				</div>
 				
+				<div class="row m-3 w-50">
+					<button type="submit" class="col-sm-3 w-25 btn btn-primary m-3">Book Room</button>
+					<a class="col-sm-3 w-25 btn btn-primary m-3" href="window.location.reload(True)" >Reset</a>
+				</div>
 				
+				<div class="row m-3 w-50">
+					{% if error %}
+					<p class="col text-danger fs-7">{{message}}</p>
+					{% else %}
+					<p class="col text-success fs-7">{{message}}</p>
+					{% endif %}
+				</div>
 				
 				
 			

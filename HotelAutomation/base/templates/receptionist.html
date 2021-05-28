@@ -34,12 +34,9 @@
 						<th scope="col">Occupied</th>
 						<th scope="col">Token</th>
 						<th scope="col">Occupied When</th>
-						<th scope="col">Occupied Checkout</th>
 						<th scope="col">Advance Price</th>
 						<th scope="col">Advance</th>
 						<th scope="col">Book When</th>
-						<th scope="col">Book Checkout</th>
-						
 					</tr>
 				</thead>
 				<tbody>
@@ -50,13 +47,11 @@
 							<td>{{room.ac}}</td>
 							<td>{{room.price}}</td>
 							<td>{{room.occupied}}</td>
-							<td>{{room.token}}</td>
+							<td>{{room.token.token}}</td>
 							<td>{{room.occupied_when}}</td>
-							<td>{{room.occupied_checkout}}</td>
 							<td>{{room.advance_price}}</td>
 							<td>{{room.advance}}</td>
 							<td>{{room.book_when}}</td>
-							<td>{{room.book_checkout}}</td>
 						</tr>
 					{% endfor %}
 					<!-- Add Rows dynamically -->
@@ -65,10 +60,10 @@
 		</div>
 		
 		<div class="justify-content-start m-3">
-			<button class="btn btn-primary m-3">Refresh </button>
-			<button class="btn btn-primary m-3">Book Room</button>
-			<button class="btn btn-primary m-3">Checkout</button>
-	
+			<a class="btn btn-primary m-3" onClick="window.location.reload()">Refresh </button>
+			<a class="btn btn-primary m-3" href="{% url 'book_room'%}" target="_blank" rel="noopener noreferrer">Book Room</a>
+			<a class="btn btn-primary m-3" href="{% url 'checkout'%}" target="_blank" rel="noopener noreferrer">Checkout</a>
+ 
 		</div>
 	</body>
 	

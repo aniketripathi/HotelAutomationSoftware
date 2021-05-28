@@ -3,8 +3,6 @@ from django.core.validators import MinLengthValidator
 # Create your models here.
 
 
-
-
 # Stores the login information of the users
 class User(models.Model):
     class UserType(models.IntegerChoices):
@@ -47,17 +45,15 @@ class Room(models.Model):
     room_number = models.IntegerField(primary_key=True)
     bed = models.CharField(max_length=6, default=Bed.SINGLE, choices=Bed.choices)
     ac = models.BooleanField(default=False)
-    token = models.ForeignKey(Guest, models.SET_NULL, blank=True, null=True)
+    token = models.ForeignKey(Guest, models.SET_NULL, null=True, to_field='token')
     # Occupied
     occupied = models.BooleanField(default=False)
-    occupied_when = models.DateTimeField(default=None, null=True, blank=True)
-    occupied_checkout = models.DateTimeField(default=None, null=True, blank=True)
+    occupied_when = models.DateTimeField(default=None, null=True)
     days = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=16, decimal_places=2)
     # advance booking
     advance = models.BooleanField(default=False)
-    book_when = models.DateTimeField(default=None, null=True, blank=True)
-    book_checkout = models.DateTimeField(default=None, null=True, blank=True)
+    book_when = models.DateTimeField(default=None, null=True)
     book_days = models.IntegerField(default=0)
     advance_price = models.DecimalField(max_digits=16, decimal_places=2)
     occupancy_rate = models.DecimalField(default=0, max_digits=16, decimal_places=2)
@@ -81,7 +77,7 @@ class Catering(models.Model):
     class Meta:
         db_table = 'catering'
     
-    token = models.ForeignKey(Guest, models.SET_NULL, blank=True, null=True)
+    token = models.ForeignKey(Guest, models.SET_NULL, null=True)
     food_item = models.CharField(max_length=32)
     price = models.DecimalField(max_digits=16, decimal_places=2)
   
