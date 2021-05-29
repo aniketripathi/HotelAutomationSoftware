@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% load static %}
+
+		<!-- Bootstrap CSS -->
+		<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+		<title>Bill</title>
+	</head>
+
+	<body>
+		<h1 class="text-center m-3 fw-bold"> Aniket Hotel Bill </h1>
+
+			<div class="d-flex flex-row justify-content-evenly">
+				<div class="d-flex flex-column justify-content-evenly border border-primary mb-1">
+
+					<div class="d-flex flex-row justify-content-center">
+						<!-- This is for basic information -->
+						<div class="d-flex flex-column  align-self-sm-center p-3 mx-3">
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Name:&nbsp;</label> <label class="fs-5">{{guest_name}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold ">Id:&nbsp;</label> <label class="fs-5">{{guest_id}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold ">Phone Number:&nbsp;</label> <label class="fs-5">{{phone_number}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Room Number:&nbsp;</label> <label class="fs-5">{{room_number}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Bed:&nbsp;</label> <label class="fs-5">{{bed}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">AC:&nbsp;</label> <label class="fs-5">{{ac}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Booking Date:&nbsp;</label> <label class="fs-5">{{occupied_when_date}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Booking Time:&nbsp;</label> <label class="fs-5">{{occupied_when_time}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Checkout Date:&nbsp;</label> <label class="fs-5">{{checkout_when_date}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Checkout Time:&nbsp;</label> <label class="fs-5">{{checkout_when_time}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Number of days:&nbsp;</label> <label class="fs-5">{{days}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Room charges:&nbsp;</label> <label class="fs-5">&#8377; {{room_charges}}</label>
+							</div>
+							<div class="d-flex justify-content-between my-1">
+								<label class="fs-5 fw-bold">Discount:&nbsp;</label> <label class="fs-5">{{discount}}%</label>
+							</div>
+					</div>
+
+						<!-- This if for catering information -->
+						<div class="d-flex flex-column align-self p-3 mx-3">
+						<div class="d-flex justify-content-between mb-3">
+							<label class="fs-3 fw-bold">Catering Bill</label>
+						</div>
+						<div class="d-flex justify-content-between my-1">
+							<label class="fs-5 fw-bold">Food Items:&nbsp;</label> <label class="fs-5">Price in &#8377;</label>
+						</div>
+						{% for item in items %}
+						<div class="d-flex justify-content-between my-1">
+							<label class="fs-5 fw-bold">{{item.food_item}}:&nbsp;</label> <label class="fs-5">{{item.price}}</label>
+						</div>
+						{% endfor %}
+						<!-- Add catering information dynamically -->
+						
+						<div class="d-flex justify-content-between my-1	">
+							<label class="fs-5 fw-bold">Total Catering Bill:&nbsp;</label> <label class="fs-5">{{catering_bill}}</label>
+						</div>
+						
+					</div>
+
+					</div>
+
+					<div class="d-flex justify-content-between align-items-center p-1 px-5 border border-info">
+						<label class="fs-3 fw-bold">Total Bill:&nbsp;</label><label class="fs-5 fw-bold">&#8377; {{total_bill}}</label>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

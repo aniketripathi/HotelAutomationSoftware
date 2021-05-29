@@ -17,7 +17,7 @@
 				<p class="nav-link text-success"> {{request.session.username}} </p>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="/base/login">logout</a>
+				<a class="nav-link active" aria-current="page" href="{% url 'logout' %}">logout</a>
 			</li>
 		</ul>
 	
@@ -32,11 +32,13 @@
 						<th scope="col">AC</th>
 						<th scope="col">Price</th>
 						<th scope="col">Occupied</th>
+						<th scope="col">Days</th>
 						<th scope="col">Token</th>
 						<th scope="col">Occupied When</th>
 						<th scope="col">Advance Price</th>
 						<th scope="col">Advance</th>
 						<th scope="col">Book When</th>
+						<th scope="col">Book Days</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,11 +49,13 @@
 							<td>{{room.ac}}</td>
 							<td>{{room.price}}</td>
 							<td>{{room.occupied}}</td>
-							<td>{{room.token.token}}</td>
+							<td>{{room.days}}</td>
+							<td>{{room.token}}</td>
 							<td>{{room.occupied_when}}</td>
 							<td>{{room.advance_price}}</td>
 							<td>{{room.advance}}</td>
 							<td>{{room.book_when}}</td>
+							<td>{{room.book_days}}</td>
 						</tr>
 					{% endfor %}
 					<!-- Add Rows dynamically -->
@@ -62,9 +66,11 @@
 		<div class="justify-content-start m-3">
 			<a class="btn btn-primary m-3" onClick="window.location.reload()">Refresh </button>
 			<a class="btn btn-primary m-3" href="{% url 'book_room'%}" target="_blank" rel="noopener noreferrer">Book Room</a>
+			<a class="btn btn-primary m-3" href="{% url 'check_discount'%}" target="_blank" rel="noopener noreferrer">Check Discount</a>
 			<a class="btn btn-primary m-3" href="{% url 'checkout'%}" target="_blank" rel="noopener noreferrer">Checkout</a>
  
 		</div>
+		<script src="{% static '/js/bootstrap.bundle.min.js' %}" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 	</body>
 	
 	

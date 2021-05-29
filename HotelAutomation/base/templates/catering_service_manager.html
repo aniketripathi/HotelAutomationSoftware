@@ -9,15 +9,52 @@
 		<!-- Bootstrap CSS -->
 		<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 		<title>Catering Service Manager</title>
+		<script type="text/javascript">
+			function add_field(){
+				var form_container = document.getElementById("form_container");
+				var	i = form_container.childElementCount - 2;
+
+				var buttons_div = document.getElementById("buttons_div");
+				
+				console.log(i);
+				var cont = document.createElement("div");
+				cont.className = "row my-3";
+				var cont1 = document.createElement("div");
+				cont1.className = "col-sm-5";
+				cont.appendChild(cont1);
+				var inp1 = document.createElement("input");
+				inp1.id = "item"+i;
+				inp1.type = "text";
+				inp1.className = "form-control";
+				inp1.placeholder = "Enter Food item name";
+				inp1.name = "item"+i;
+				cont1.appendChild(inp1);
+				
+				var cont2 = document.createElement("div");
+				cont2.className = "col-sm-3";
+				cont.appendChild(cont2);
+				var inp2 = document.createElement("input");
+				inp2.id = "price"+i;
+				inp2.type = "number";
+				inp2.className = "form-control";
+				inp2.placeholder = "Enter Price";
+				inp2.name = "price"+i;
+				cont2.appendChild(inp2);
+				
+				form_container.insertBefore(cont, buttons_div);
+			}
+		</script>
+		
+		
 	</head>
 	
 	<body>
 		<ul class="nav justify-content-end">
 			<li class="nav-item">
-				<p class="nav-link text-success"> Username </p>
+				<p class="nav-link text-success"> {{request.session.username}} </p>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#">logout</a>
+				<a class="nav-link active" aria-current="page" href="{% url 'logout' %}">logout</a>
 			</li>
 		</ul>
 		
@@ -26,11 +63,12 @@
 		</div>
 		
 		<div class="mx-1 my-3">
-			<form class="form-inline">
+			<form class="form-inline" method="post">
+				{% csrf_token %}
 				<div class="form-group">
 					<label for="token" class="form-label mx-3">Token</label>
-					<input type="number" id="token" min="0" step="1">
-					<button type="button" class="btn btn-sm btn-primary mx-3">Get Info</button>
+					<input type="number" id="token" min="0" step="1" name="token" value="{{token}}">
+					<button type="submit" class="btn btn-sm btn-primary mx-3">Get Info</button>
 					<!--c Add a label here to display message -->
 				</div>
 			</form>
@@ -38,35 +76,41 @@
 		
 		<div class="mx-3 my-1">
 		<!--This area is for displaying token information -->
-			<div class="row my-3">
-				<label class="fs-7 fw-bold col" for="guest_name">Name</label><label id="guest_name" class="fs-7"></label>
-				<label class="fs-7 fw-bold col" for="guest_room">Room</label><label id="guest_room" class="fs-7"></label>
-				<label class="fs-7 fw-bold col" for="guest_price">Total price</label><label id="guest_price" class="fs-7"></label>
+			<div class="w-50">
+				<div class="row"><label class="fs-7 fw-bold col-sm-1" for="guest_name">Name:&nbsp;</label><label id="guest_name" class=" col fs-7">{{guest_name}}</label></div>
+				<div class="row"><label class="fs-7 fw-bold col-sm-1" for="guest_room">Room:&nbsp;</label><label id="guest_room" class="col fs-7">{{room_number}}</label></div>
 			</div>
 		
 			<div class="mx-1 w-50">
 		<!--This area is used for adding catering information -->
 		
-				<form>
-					<div class="row my-3">
-						<label class="fs-5 col-sm-5">Food Item</label>
-						<label class="fs-5 col-sm-3">Price</label>
-					</div>
-				
-					<div class="row my-3">
-						<div class="col-sm-5"><input id="item1" type="text" class="form-control" placeholder="Enter Food item name"></div>
-						<div class="col-sm-3"><input id="price1" type="number" class="form-control" placeholder="Enter Price"></div>
-					</div>
-				
-					<!-- Add more items dynamically-->
-			
-				
-					<div class="row my-3 w-50">
-						<button class="col-sm-3 btn btn-primary btn-sm mx-3">Add Item</button>
-						<button class="col-sm-3 btn btn-secondary btn-sm mx-3">Submit</button>
+				<form method="post" id="catering_form">
+					{% csrf_token %}
+					<div id="form_container">
+						<div class="row my-3">
+							<label class="fs-5 col-sm-5">Food Item</label>
+							<label class="fs-5 col-sm-3">Price</label>
+						</div>
+					
+						<div class="row my-3">
+							<div class="col-sm-5"><input name ="item1" id="item1" type="text" class="form-control" placeholder="Enter Food item name"></div>
+							<div class="col-sm-3"><input name="price1" id="price1" type="number" class="form-control" placeholder="Enter Price"></div>
+						</div>
+								
+						<div class="row my-3 w-50" id="buttons_div">
+							<a class="col-sm-3 btn btn-primary btn-sm mx-3" href="javascript:void(0)" onClick = "add_field()">Add Item</a>
+							<button class="col-sm-3 btn btn-secondary btn-sm mx-3" type="submit">Submit</button>
+						</div>
+						{% if error %}
+						<p class="m-3 fs-7 fw-bold text-danger row">{{message}}</p>
+						{% else %}
+						<p class="m-3 fs-7 fw-bold text-success row">{{message}}</p>
+						{% endif %}
 					</div>
 			
 				</form>
+				
+				
 			</div>
 		</div>
 		

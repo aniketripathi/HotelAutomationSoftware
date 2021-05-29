@@ -8,7 +8,7 @@
 	
 		<!-- Bootstrap CSS -->
 		<link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-		<title>Checkout</title>
+		<title>Check Discount</title>
 	</head>
 	
 	
@@ -27,8 +27,8 @@
 			<form class="form-inline" method="post">
 				{% csrf_token %}
 				<div class="form-group row w-50">
-					<label for="token" class="col-sm-1 form-label mx-3">Token</label>
-					<input required class="col-sm-3 w-25 form-control" type="number" id="token" min="0" step="1" name="token" value="{{token}}">
+					<label for="phone_number" class="col-sm-3 form-label px-3">Phone Number</label>
+					<input required class="col w-25 form-control" type="text" id="phone_number" placeholder="Enter phone number here" name="phone_number" maxlength="10" >
 					<button type="sumbit" class="col-sm-3 btn btn-sm btn-primary mx-3">Get Info</button>
 					<!--c Add a label here to display message -->
 				</div>
@@ -38,12 +38,9 @@
 		<div class="mx-3 my-1 w-25">
 		<!--This area is for displaying token information -->
 			<div class="row"><label class="fs-7 fw-bold col" for="guest_name">Name:&nbsp;</label><label id="guest_name" class="fs-7 col">{{guest_name}}</label></div>
-			<div class="row"><label class="fs-7 fw-bold col" for="guest_name">Room:&nbsp;</label><label id="guest_name" class="fs-7 col">{{room_number}}</label></div>
-			<a class="btn btn-primary my-3" href="{% url 'generate_bill' %}" target="_blank" rel="noopener noreferrer">Generate Bill</a>
+			<div class="row"><label class="fs-7 fw-bold col" for="discount">Discount:&nbsp;</label><label id="discount" class="fs-7 col">{{discount}}%</label></div>
 			{% if error %}
 			<p class="m-3 fs-7 fw-bold text-danger row">{{message}}</p>
-			{% else %}
-			<p class="m-3 fs-7 fw-bold text-success row">{{message}}</p>
 			{% endif %}
 		</div>
 	
