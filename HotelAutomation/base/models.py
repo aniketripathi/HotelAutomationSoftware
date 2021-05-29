@@ -23,20 +23,21 @@ class Guest(models.Model):
     
     class Meta:
         db_table = 'guests'
-    
-    token = models.IntegerField(primary_key=True)
+    @property
+    def token(self):
+        return self.id
     name = models.CharField(max_length=32)
-    id = models.CharField(max_length=16)
+    identification = models.CharField(max_length=16,null=True)
     discount = models.IntegerField(default=0)
-    phone = models.CharField(max_length=10,validators=[MinLengthValidator(10)])
+    phone = models.CharField(max_length=10,validators=[MinLengthValidator(10)],null=True)
 
 # Stores information about room
 
 class Room(models.Model):
     
     class Bed(models.TextChoices):
-        SINGLE = 'Single'
-        DOUBLE = 'Double'    
+        SINGLE = 'single'
+        DOUBLE = 'double'    
     
     class Meta:
         db_table = 'rooms'
@@ -45,7 +46,7 @@ class Room(models.Model):
     room_number = models.IntegerField(primary_key=True)
     bed = models.CharField(max_length=6, default=Bed.SINGLE, choices=Bed.choices)
     ac = models.BooleanField(default=False)
-    token = models.ForeignKey(Guest, models.SET_NULL, null=True, to_field='token')
+    token = models.IntegerField(default=-1)
     # Occupied
     occupied = models.BooleanField(default=False)
     occupied_when = models.DateTimeField(default=None, null=True)
@@ -67,7 +68,7 @@ class Discount(models.Model):
         db_table = 'discount'
         
     name = models.CharField(max_length=32)
-    id = models.CharField(max_length=16)
+    identification = models.CharField(max_length=16, null=True)
     discount = models.IntegerField(default=0)
     phone = models.CharField(max_length=10, primary_key=True, validators=[MinLengthValidator(10)])
 
@@ -77,7 +78,7 @@ class Catering(models.Model):
     class Meta:
         db_table = 'catering'
     
-    token = models.ForeignKey(Guest, models.SET_NULL, null=True)
+    token = models.IntegerField(default=-1)
     food_item = models.CharField(max_length=32)
     price = models.DecimalField(max_digits=16, decimal_places=2)
   
